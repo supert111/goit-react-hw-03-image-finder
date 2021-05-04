@@ -1,4 +1,4 @@
-// import Searchbar from './components/Searchbar/Searchbar';
+import Searchbar from './components/Searchbar/Searchbar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import ImageGalleryItem from './components/ImageGalleryItem/ImageGalleryItem';
 import Loader from './components/Loader/Loader';
@@ -14,7 +14,7 @@ function App () {
     return (
         <div className="App"> 
         <h1>Hello React Mykola </h1>
-        {/* <Searchbar /> */}
+        <Searchbar />
         <ImageGallery />
         <ImageGalleryItem />
         <Loader />
