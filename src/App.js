@@ -1,17 +1,25 @@
-import MyFirstComponent from './components/MyFirstComponent';
-import MySecondComponent from './components/MySecondComponent';
+// import Searchbar from './components/Searchbar/Searchbar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import ImageGalleryItem from './components/ImageGalleryItem/ImageGalleryItem';
+import Loader from './components/Loader/Loader';
+import Button from './components/Button/Button';
+import Modal from './components/Modal/Modal';
 
 
 function App () {
-    const user = {
-        name: 'Iryna',
-    };
+    // const user = {
+    //     name: 'Iryna',
+    // };
 
     return (
         <div className="App"> 
         <h1>Hello React Mykola </h1>
-        <MyFirstComponent jkhkj={user} />
-        <MySecondComponent user={user} />
+        {/* <Searchbar /> */}
+        <ImageGallery />
+        <ImageGalleryItem />
+        <Loader />
+        <Button />
+        <Modal />
         </div>
 
     );
