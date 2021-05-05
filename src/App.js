@@ -51,23 +51,21 @@ class App extends Component {
     render() {
         const { hits, isLoading, error } = this.state;
         const shouldRenderLoadMoreButton = hits.length > 0 && !isLoading;
-        
+
         return (
             <div className="App"> 
                 {error && <h1>Try entering another request</h1>}
                 <h1>Hello React Mykola </h1>
                 <Searchbar onSubmit={this.onChangeQuery}/>
-                <ImageGallery />
-                <ImageGalleryItem />
+                <ImageGallery>
+                    <ImageGalleryItem hits={hits}/>
+                </ImageGallery> 
                 {isLoading && <Loader />}
                 {shouldRenderLoadMoreButton && <Button onClick={this.fetchImages}/>}
                 <Modal />
             </div>    
         );
     }
-    // const map = fetchImages();
-    // console.log(map)
-
-
 }
+
 export default App;
