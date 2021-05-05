@@ -6,6 +6,7 @@ import Loader from './components/Loader/Loader';
 import Button from './components/Button/Button';
 import Modal from './components/Modal/Modal';
 import fetchPhoto from './api/data.api';
+import styles from './App.module.css';
 
 class App extends Component {
     state = {
@@ -14,6 +15,8 @@ class App extends Component {
         seachQuery: '',
         isLoading: false,
         error: null,
+        showModal: false,
+        bigImageURL: '',
     };
 
     componentDidUpdate(prevProps, prevState) {
@@ -53,29 +56,34 @@ class App extends Component {
         });
     };
 
-    // searchBigImg = (idImg) => {
-    //     const { hits } = this.state;
-    //     const { id, webformatURL, largeImageURL } = hits;
-    //     if (idImg === id) {
+    toggleModal = () => {
+        this.setState(({showModal}) => ({
+            showModal: !showModal,
+        }))
+    }
 
-    //     }
-    // }
+    searchBigImg = (idImg) => {
+        const { hits } = this.state;
+        const searchIdImg = hits.find( item => item.id === idImg);
+        const { largeImageURL } = searchIdImg;
+        this.setState({ bigImageURL: largeImageURL });
+        this.toggleModal();
+    }
 
     render() {
-        const { hits, isLoading, error } = this.state;
+        const { hits, isLoading, error, showModal, bigImageURL } = this.state;
         const shouldRenderLoadMoreButton = hits.length > 0 && !isLoading;
 
         return (
-            <div className="App"> 
+            <div className={styles.App}> 
                 {error && <h1>Try entering another request</h1>}
-                <h1>Hello React Mykola </h1>
                 <Searchbar onSubmit={this.onChangeQuery}/>
                 <ImageGallery>
-                    <ImageGalleryItem hits={hits}/>
+                    <ImageGalleryItem hits={hits} onClick={this.searchBigImg}/>
                 </ImageGallery> 
                 {isLoading && <Loader />}
                 {shouldRenderLoadMoreButton && <Button onClick={this.fetchImages}/>}
-                <Modal />
+                {showModal && <Modal onClose={this.toggleModal}> <img src={ bigImageURL } alt="" /> </Modal> }
             </div>    
         );
     }
