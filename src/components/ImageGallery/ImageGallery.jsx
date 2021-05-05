@@ -1,11 +1,11 @@
 import styles from './ImageGallery.module.css';
 
-const ImageGallery = () => { 
+const ImageGallery = ({children}) => { 
     
         return (
             <div className="second-component">
                 <ul className={styles.ImageGallery}>
-                   {/* Набор <li> с изображениями  */}
+                    {children}
                 </ul>
             </div>
         );
