@@ -24,19 +24,24 @@ class App extends Component {
 
     fetchImages = () => {
         const { seachQuery, currentPage } = this.state;
-        const options = { seachQuery, currentPage };
 
         this.setState({isLoading: true});
         
-        fetchPhoto(options)
-            .then(hits => {
+        fetchPhoto(seachQuery, currentPage)
+            .then(hits => { 
                 this.setState(prevState => ({
                     hits: [...prevState.hits, ...hits],
                     currentPage: prevState.currentPage + 1,
                 }));
             })
             .catch(error => this.setState({error}))
-            .finally(() => this.setState({isLoading: false}));
+            .finally(() => {
+                this.setState({isLoading: false});
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth',
+                });
+            });
     };
 
     onChangeQuery = query => {
@@ -47,6 +52,14 @@ class App extends Component {
             error: null,
         });
     };
+
+    // searchBigImg = (idImg) => {
+    //     const { hits } = this.state;
+    //     const { id, webformatURL, largeImageURL } = hits;
+    //     if (idImg === id) {
+
+    //     }
+    // }
 
     render() {
         const { hits, isLoading, error } = this.state;
