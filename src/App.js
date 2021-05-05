@@ -76,8 +76,8 @@ class App extends Component {
 
         return (
             <div className={styles.App}> 
-                {error && <h1>Try entering another request</h1>}
                 <Searchbar onSubmit={this.onChangeQuery}/>
+                {error && <h1>Try entering another request</h1>}
                 <ImageGallery>
                     <ImageGalleryItem hits={hits} onClick={this.searchBigImg}/>
                 </ImageGallery> 

@@ -1,12 +1,13 @@
 import { Component } from 'react';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import LoaderSpiner from "react-loader-spinner";
+import styles from './Loader.module.css';
 
 class Loader extends Component {
   //other logic
   render() {
     return (
-      <LoaderSpiner
+      <LoaderSpiner className={styles.loader_circle}
         type="ThreeDots"
         color="#00BFFF"
         height={80}
